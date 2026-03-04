@@ -2,91 +2,106 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEM-Baking Handbook | Giao Diện Video Top</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>STEM-Baking Handbook | Mobile Optimized</title>
     <style>
-        /* --- GIAO DIỆN TỔNG THỂ --- */
-        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; background: #222; overflow-x: hidden; }
+        /* --- RESET & CẤU HÌNH FULL KHUNG --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html, body { 
+            margin: 0; padding: 0; 
+            width: 100%; min-height: 100vh; 
+            background: #222; 
+            overflow-x: hidden; 
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.postimg.cc/jSndvpGL/fresh-baking-ingredients-rustic-wooden-table-wooden-table-displays-essential-baking-ingredients-incl.jpg');
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://i.postimg.cc/jSndvpGL/fresh-baking-ingredients-rustic-wooden-table-wooden-table-displays-essential-baking-ingredients-incl.jpg');
             background-size: cover; background-attachment: fixed; background-position: center;
             display: flex; flex-direction: column; align-items: center; color: white;
         }
 
-        /* --- SPA SYSTEM --- */
-        .page { display: none; width: 100%; flex-direction: column; align-items: center; padding-bottom: 50px; animation: fadeIn 0.4s ease-out; }
+        /* --- TRANG CHỦ (SPA) --- */
+        .page { display: none; width: 100%; flex-direction: column; align-items: center; padding-bottom: 30px; animation: fadeIn 0.4s ease-out; }
         .page.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- TRANG CHỦ --- */
-        .header-section { text-align: center; padding: 50px 20px; width: 90%; max-width: 1000px; }
-        h1 { font-size: clamp(2rem, 7vw, 3.5rem); text-shadow: 4px 4px 20px rgba(0,0,0,0.9); margin: 0; color: #f3e5f5; }
+        .header-section { text-align: center; padding: 40px 15px; width: 100%; }
+        h1 { font-size: clamp(1.8rem, 8vw, 3rem); text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; color: #f3e5f5; }
         
         .content-card {
-            background: rgba(255, 255, 255, 0.98); color: #222; padding: 40px; border-radius: 40px;
-            box-shadow: 0 30px 70px rgba(0,0,0,0.7); width: 92%; max-width: 950px; 
-            border: 10px double #6f4e37; margin-top: 20px; box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.98); color: #222; padding: 30px; border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6); width: 94%; max-width: 900px; 
+            border: 8px double #6f4e37; margin-top: 10px;
         }
 
-        .step-wrapper { display: flex; flex-direction: column; gap: 40px; }
-        .process-step { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 25px; cursor: pointer; }
+        .step-wrapper { display: flex; flex-direction: column; gap: 30px; }
+        .process-step { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 20px; cursor: pointer; }
         .step-reverse { flex-direction: row-reverse; }
 
         .video-container-thumb {
-            display: flex; align-items: center; background: #fff; padding: 25px; border: 4px solid #6f4e37; 
-            box-shadow: 10px 10px 0px #d7ccc8; flex: 1; border-radius: 30px; transition: 0.4s all;
+            display: flex; align-items: center; background: #fff; padding: 20px; border: 3px solid #6f4e37; 
+            box-shadow: 8px 8px 0px #d7ccc8; flex: 1; border-radius: 20px; transition: 0.3s all;
         }
-        .video-container-thumb:hover { transform: translateY(-8px); box-shadow: 15px 15px 25px rgba(0,0,0,0.2); }
+        .video-container-thumb:hover { transform: translateY(-5px); }
 
-        .qr-box { flex: 0 0 130px; height: 130px; border: 2px solid #6f4e37; border-radius: 18px; overflow: hidden; }
+        .qr-box { flex: 0 0 110px; height: 110px; border: 2px solid #6f4e37; border-radius: 12px; overflow: hidden; }
         .qr-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        .video-text { flex: 1; padding: 0 20px; }
-        .video-text h3 { margin: 0 0 8px 0; color: #6f4e37; font-size: 1.4rem; text-transform: uppercase; border-bottom: 2px solid #eee; display: inline-block; }
+        .video-text { flex: 1; padding: 0 15px; }
+        .video-text h3 { margin: 0 0 5px 0; color: #6f4e37; font-size: 1.2rem; border-bottom: 2px solid #eee; display: inline-block; }
+        .video-text p { margin: 5px 0 0; font-size: 0.9rem; color: #555; }
 
-        /* --- TRANG CHI TIẾT (DỌC: VIDEO TRÊN - INFO DƯỚI) --- */
+        /* --- TRANG CHI TIẾT (FULL KHUNG MOBILE) --- */
         .sub-card { 
-            background: white; color: #222; width: 95%; max-width: 1000px; 
-            padding: 30px; border-radius: 40px; border: 8px double #6f4e37; 
-            margin-top: 40px; text-align: left; box-sizing: border-box;
+            background: white; color: #222; width: 96%; max-width: 1000px; 
+            padding: 25px; border-radius: 35px; border: 6px double #6f4e37; 
+            margin-top: 30px; text-align: left;
         }
 
-        /* Video khu vực trên cùng */
         .video-player-top { 
             width: 100%; aspect-ratio: 16/9; background: #000; 
-            border-radius: 25px; overflow: hidden; border: 5px solid #6f4e37; 
-            margin-bottom: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-radius: 20px; overflow: hidden; border: 4px solid #6f4e37; 
+            margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* Khu vực thông tin bên dưới chia lưới */
-        .info-grid-bottom { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 25px; 
-        }
-
-        .info-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #6f4e37; padding-bottom: 10px; margin-bottom: 20px; }
-        .badge { background: #6f4e37; color: white; padding: 6px 18px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; }
+        .info-grid-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .info-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6f4e37; padding-bottom: 10px; margin-bottom: 20px; }
+        .badge { background: #6f4e37; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; }
         
-        .section-box { background: #fdfaf8; padding: 25px; border-radius: 25px; border-bottom: 6px solid #d7ccc8; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; box-sizing: border-box; }
-        .section-box h4 { margin: 0 0 15px 0; color: #5d4037; text-transform: uppercase; font-size: 1.1rem; border-left: 5px solid #6f4e37; padding-left: 10px; }
-        
-        .full-width { grid-column: 1 / -1; } /* Cho mục Khoa học trải dài hết chiều ngang */
+        .section-box { background: #fdfaf8; padding: 20px; border-radius: 20px; border-bottom: 4px solid #d7ccc8; height: 100%; }
+        .section-box h4 { margin: 0 0 10px 0; color: #5d4037; font-size: 1rem; border-left: 4px solid #6f4e37; padding-left: 8px; }
+        .full-width { grid-column: 1 / -1; }
 
-        ul, ol { padding-left: 20px; margin: 0; line-height: 1.7; }
-        li { margin-bottom: 10px; }
+        ul, ol { padding-left: 18px; margin: 0; font-size: 0.95rem; line-height: 1.6; }
+        li { margin-bottom: 6px; }
 
         .back-btn { 
-            display: block; width: fit-content; margin: 30px auto 0; padding: 15px 45px; 
-            background: #6f4e37; color: white; border-radius: 35px; 
-            text-decoration: none; font-weight: bold; cursor: pointer; border: none; transition: 0.3s;
+            display: block; width: fit-content; margin: 25px auto 0; padding: 12px 35px; 
+            background: #6f4e37; color: white; border-radius: 30px; 
+            text-decoration: none; font-weight: bold; cursor: pointer; border: none;
         }
-        .back-btn:hover { background: #5d4037; transform: translateY(-3px); }
 
-        @media (max-width: 800px) { 
+        /* --- RESPONSIVE CHO ĐIỆN THOẠI --- */
+        @media (max-width: 768px) {
+            .content-card { width: 96%; padding: 20px; border-radius: 20px; }
+            .process-step, .step-reverse { flex-direction: column; text-align: center; }
+            .video-container-thumb { width: 100%; flex-direction: column; padding: 15px; }
+            .qr-box { width: 100%; height: 160px; margin-bottom: 10px; }
+            
+            .sub-card { 
+                width: 100%; margin-top: 0; border-radius: 0; 
+                border-left: none; border-right: none; padding: 15px; 
+            }
             .info-grid-bottom { grid-template-columns: 1fr; }
-            .process-step { flex-direction: column; text-align: center; }
+            .info-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .video-player-top { border-radius: 10px; border-width: 3px; }
         }
+
+        .floating-fb { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .fb-btn { width: 55px; height: 55px; background: #1877F2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 24px; border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
     </style>
 </head>
 <body>
@@ -94,7 +109,7 @@
     <div id="main-page" class="page active">
         <div class="header-section">
             <h1>STEM-Baking Handbook</h1>
-            <p style="color: #d7ccc8; font-weight: bold; letter-spacing: 2px;">4 BÀI HỌC CƠ BẢN VỀ KHOA HỌC LÀM BÁNH</p>
+            <p style="color: #d7ccc8; font-size: 0.9rem; font-weight: bold; letter-spacing: 1px;">KHOA HỌC TRONG TỪNG CHIẾC BÁNH</p>
         </div>
 
         <div class="content-card">
@@ -102,26 +117,26 @@
                 <div class="process-step" onclick="showPage('page-flan')">
                     <div class="video-container-thumb">
                         <div class="qr-box"><img src="https://i.postimg.cc/3xpH2T1J/11111.jpg"></div>
-                        <div class="video-text"><h3>1. Bánh Flan</h3><p>🔬 Sự đông tụ Protein.</p></div>
-                    </div><div style="font-size: 4rem;">🍮</div>
+                        <div class="video-text"><h3>1. Bánh Flan</h3><p>🔬 Đông tụ Protein</p></div>
+                    </div><div style="font-size: 3rem;">🍮</div>
                 </div>
                 <div class="process-step step-reverse" onclick="showPage('page-sua-chien')">
                     <div class="video-container-thumb">
                         <div class="qr-box"><img src="https://i.postimg.cc/6Qbxc98r/IMG-20260224-165446.png"></div>
-                        <div class="video-text"><h3>2. Sữa Tươi Chiên</h3><p>🔬 Hồ hóa tinh bột ngô.</p></div>
-                    </div><div style="font-size: 4rem;">🧈</div>
+                        <div class="video-text"><h3>2. Sữa Tươi Chiên</h3><p>🔬 Hồ hóa tinh bột</p></div>
+                    </div><div style="font-size: 3rem;">🧈</div>
                 </div>
                 <div class="process-step" onclick="showPage('page-bong-lan')">
                     <div class="video-container-thumb">
                         <div class="qr-box"><img src="https://i.postimg.cc/kXNM6N30/banh-bong-lan-pho-mai-nhat-ban-(1).jpg"></div>
-                        <div class="video-text"><h3>3. Bánh Bông Lan</h3><p>🔬 Cấu trúc bọt khí bền vững.</p></div>
-                    </div><div style="font-size: 4rem;">🍞</div>
+                        <div class="video-text"><h3>3. Bánh Bông Lan</h3><p>🔬 Cấu trúc bọt khí</p></div>
+                    </div><div style="font-size: 3rem;">🍞</div>
                 </div>
                 <div class="process-step step-reverse" onclick="showPage('page-dau-bo')">
                     <div class="video-container-thumb">
                         <div class="qr-box"><img src="https://i.postimg.cc/7LNT3CGY/6130988-sot-dau-trung.png"></div>
-                        <div class="video-text"><h3>4. Sốt Dầu Bơ Trứng</h3><p>🔬 Hiện tượng nhũ hóa hóa học.</p></div>
-                    </div><div style="font-size: 4rem;">🥣</div>
+                        <div class="video-text"><h3>4. Sốt Dầu Bơ Trứng</h3><p>🔬 Hiện tượng nhũ hóa</p></div>
+                    </div><div style="font-size: 3rem;">🥣</div>
                 </div>
             </div>
         </div>
@@ -129,73 +144,25 @@
 
     <div id="page-flan" class="page">
         <div class="sub-card">
-            <div class="info-header">
-                <h2 style="color: #6f4e37; margin: 0;">🍮 Bánh Flan Caramel</h2>
-                <span class="badge">45 Phút | Độ khó: ⭐⭐</span>
-            </div>
-            
-            <div class="video-player-top">
-                <iframe id="v1" data-src="https://drive.google.com/file/d/19vkJJLCmHWzA5kuo7CF0Y62HR2XqTKgU/preview"></iframe>
-            </div>
-
+            <div class="info-header"><h2>🍮 Bánh Flan Caramel</h2><span class="badge">45 Phút | ⭐⭐</span></div>
+            <div class="video-player-top"><iframe id="v1" data-src="https://drive.google.com/file/d/19vkJJLCmHWzA5kuo7CF0Y62HR2XqTKgU/preview"></iframe></div>
             <div class="info-grid-bottom">
-                <div class="section-box">
-                    <h4>🛒 Nguyên liệu & Định lượng</h4>
-                    <ul>
-                        <li>5 quả trứng gà (mới, nhiệt độ phòng).</li>
-                        <li>500ml sữa tươi không đường.</li>
-                        <li>100g đường cát (cho caramel).</li>
-                        <li>50g đường (cho sữa), 1 ống vani.</li>
-                    </ul>
-                </div>
-                <div class="section-box">
-                    <h4>👨‍🍳 Quy trình thực hiện</h4>
-                    <ol>
-                        <li>Thắng đường thành màu cánh gián, đổ vào đáy khuôn.</li>
-                        <li>Đun sữa ấm (không sôi), trộn nhẹ nhàng vào trứng đã đánh.</li>
-                        <li>Lọc hỗn hợp qua rây 2 lần cho mịn.</li>
-                        <li>Hấp lửa nhỏ trong 20-30 phút (đậy nắp khuôn).</li>
-                    </ol>
-                </div>
-                <div class="section-box full-width">
-                    <h4>🔬 Khoa học STEM (Đông tụ Protein)</h4>
-                    <p>Khi gặp nhiệt, protein trong trứng liên kết lại tạo thành mạng lưới giữ nước (gel). Nếu hấp quá nóng (>90°C), các túi khí bên trong sẽ vỡ ra gây ra hiện tượng <strong>bánh bị rỗ</strong>. Hãy giữ nhiệt độ ổn định để bánh mịn màng!</p>
-                </div>
+                <div class="section-box"><h4>🛒 Nguyên liệu</h4><ul><li>5 trứng gà, 500ml sữa tươi.</li><li>100g đường làm caramel.</li><li>50g đường, vani.</li></ul></div>
+                <div class="section-box"><h4>👨‍🍳 Cách làm</h4><ol><li>Nấu caramel màu cánh gián.</li><li>Pha trứng sữa ấm, rây mịn.</li><li>Hấp lửa nhỏ 20-30 phút.</li></ol></div>
+                <div class="section-box full-width"><h4>🔬 Khoa học STEM</h4><p>Nhiệt độ làm protein trứng đông tụ tạo gel. Hấp quá nóng (>90°C) sẽ làm bánh bị rỗ do bọt khí thoát ra mạnh.</p></div>
             </div>
-            <button class="back-btn" onclick="showPage('main-page')">Quay lại Trang chủ</button>
+            <button class="back-btn" onclick="showPage('main-page')">Quay lại</button>
         </div>
     </div>
 
     <div id="page-sua-chien" class="page">
         <div class="sub-card">
-            <div class="info-header">
-                <h2 style="color: #6f4e37; margin: 0;">🧈 Sữa Tươi Chiên Giòn</h2>
-                <span class="badge">40 Phút | Độ khó: ⭐⭐</span>
-            </div>
-            <div class="video-player-top">
-                <iframe id="v2" data-src="https://drive.google.com/file/d/1hukoJSM5ITy4BSfWZM62HDAemj0ddxw8/preview"></iframe>
-            </div>
+            <div class="info-header"><h2>🧈 Sữa Tươi Chiên</h2><span class="badge">40 Phút | ⭐⭐</span></div>
+            <div class="video-player-top"><iframe id="v2" data-src="https://drive.google.com/file/d/1hukoJSM5ITy4BSfWZM62HDAemj0ddxw8/preview"></iframe></div>
             <div class="info-grid-bottom">
-                <div class="section-box">
-                    <h4>🛒 Nguyên liệu</h4>
-                    <ul>
-                        <li>250ml sữa tươi, 30g bột ngô.</li>
-                        <li>35g đường, 1 quả trứng gà.</li>
-                        <li>Bột chiên xù, bột mỳ đa năng.</li>
-                    </ul>
-                </div>
-                <div class="section-box">
-                    <h4>👨‍🍳 Quy trình thực hiện</h4>
-                    <ol>
-                        <li>Khuấy sữa, đường, bột ngô trên lửa nhỏ đến khi đặc lại.</li>
-                        <li>Để đông lạnh 3 tiếng, sau đó cắt khối vuông.</li>
-                        <li>Nhúng qua bột mỳ, trứng, bột xù rồi chiên lửa lớn.</li>
-                    </ol>
-                </div>
-                <div class="section-box full-width">
-                    <h4>🔬 Khoa học STEM (Hồ hóa tinh bột)</h4>
-                    <p>Các hạt tinh bột ngô khi đun nóng sẽ hút nước và trương nở, tạo ra độ đặc sệt. Khi làm lạnh, mạng lưới tinh bột này "nhốt" sữa bên trong tạo thành khối có thể cắt được.</p>
-                </div>
+                <div class="section-box"><h4>🛒 Nguyên liệu</h4><ul><li>250ml sữa tươi, 30g bột ngô.</li><li>Bột xù, trứng, bột mỳ.</li></ul></div>
+                <div class="section-box"><h4>👨‍🍳 Cách làm</h4><ol><li>Khuấy sữa bột ngô đến đặc.</li><li>Để đông, cắt khối, nhúng bột.</li><li>Chiên vàng giòn lửa lớn.</li></ol></div>
+                <div class="section-box full-width"><h4>🔬 Khoa học STEM</h4><p>Hạt tinh bột ngô trương nở khi gặp nhiệt và hút sữa vào trong, tạo thành khối đặc dẻo khi làm lạnh.</p></div>
             </div>
             <button class="back-btn" onclick="showPage('main-page')">Quay lại</button>
         </div>
@@ -203,34 +170,12 @@
 
     <div id="page-bong-lan" class="page">
         <div class="sub-card">
-            <div class="info-header">
-                <h2 style="color: #6f4e37; margin: 0;">🍞 Bánh Bông Lan Gato</h2>
-                <span class="badge">60 Phút | Độ khó: ⭐⭐⭐⭐</span>
-            </div>
-            <div class="video-player-top">
-                <iframe id="v3" data-src="https://drive.google.com/file/d/11PbCtNN0oDrxZcT_kLteMMIT6XmrH6hz/preview"></iframe>
-            </div>
+            <div class="info-header"><h2>🍞 Bánh Bông Lan</h2><span class="badge">60 Phút | ⭐⭐⭐⭐</span></div>
+            <div class="video-player-top"><iframe id="v3" data-src="https://drive.google.com/file/d/11PbCtNN0oDrxZcT_kLteMMIT6XmrH6hz/preview"></iframe></div>
             <div class="info-grid-bottom">
-                <div class="section-box">
-                    <h4>🛒 Nguyên liệu</h4>
-                    <ul>
-                        <li>4 quả trứng, 100g bột mì số 8.</li>
-                        <li>80g đường mịn, 30ml dầu ăn.</li>
-                        <li>Chút nước cốt chanh để đánh trứng.</li>
-                    </ul>
-                </div>
-                <div class="section-box">
-                    <h4>👨‍🍳 Quy trình thực hiện</h4>
-                    <ol>
-                        <li>Tách lòng trắng trứng, đánh bông với đường và chanh.</li>
-                        <li>Trộn lòng đỏ và bột mì vào bằng kỹ thuật Fold (vét tròn).</li>
-                        <li>Nướng ở 150°C trong 45 phút cho bánh chín đều.</li>
-                    </ol>
-                </div>
-                <div class="section-box full-width">
-                    <h4>🔬 Khoa học STEM (Bọt khí & Cấu trúc)</h4>
-                    <p>Bánh nở nhờ hàng triệu bọt khí li ti trong lòng trắng trứng. Khi nướng, các bọt khí này giãn nở theo nhiệt độ, đồng thời bột mì chín cứng lại để giữ vững hình dáng bánh.</p>
-                </div>
+                <div class="section-box"><h4>🛒 Nguyên liệu</h4><ul><li>4 trứng, 100g bột mì số 8.</li><li>80g đường, 30ml dầu ăn.</li></ul></div>
+                <div class="section-box"><h4>👨‍🍳 Cách làm</h4><ol><li>Đánh bông lòng trắng trứng.</li><li>Fold nhẹ bột và lòng đỏ.</li><li>Nướng 150°C trong 45 phút.</li></ol></div>
+                <div class="section-box full-width"><h4>🔬 Khoa học STEM</h4><p>Bánh phồng nở nhờ không khí bị nhốt trong bọt trứng giãn nở khi gặp nhiệt. Kỹ thuật trộn nhẹ tay là chìa khóa!</p></div>
             </div>
             <button class="back-btn" onclick="showPage('main-page')">Quay lại</button>
         </div>
@@ -238,52 +183,28 @@
 
     <div id="page-dau-bo" class="page">
         <div class="sub-card">
-            <div class="info-header">
-                <h2 style="color: #6f4e37; margin: 0;">🥣 Sốt Dầu Bơ Trứng</h2>
-                <span class="badge">20 Phút | Độ khó: ⭐⭐⭐</span>
-            </div>
-            <div class="video-player-top">
-                <iframe id="v4" data-src="https://drive.google.com/file/d/10dVuMM2OA7479cCQ_M-jqIYjDYeYCF3Z/preview"></iframe>
-            </div>
+            <div class="info-header"><h2>🥣 Sốt Dầu Bơ Trứng</h2><span class="badge">20 Phút | ⭐⭐⭐</span></div>
+            <div class="video-player-top"><iframe id="v4" data-src="https://drive.google.com/file/d/10dVuMM2OA7479cCQ_M-jqIYjDYeYCF3Z/preview"></iframe></div>
             <div class="info-grid-bottom">
-                <div class="section-box">
-                    <h4>🛒 Nguyên liệu</h4>
-                    <ul>
-                        <li>2 lòng đỏ trứng gà.</li>
-                        <li>200ml dầu ăn (dầu nành/hướng dương).</li>
-                        <li>1 muỗng đường, chút muối.</li>
-                    </ul>
-                </div>
-                <div class="section-box">
-                    <h4>👨‍🍳 Quy trình thực hiện</h4>
-                    <ol>
-                        <li>Đánh trứng với đường cho đến khi bông nhạt màu.</li>
-                        <li>Thêm từng giọt dầu ăn vào đánh liên tục.</li>
-                        <li>Khi sốt đã bắt đầu nhũ hóa, có thể thêm dầu nhanh hơn.</li>
-                    </ol>
-                </div>
-                <div class="section-box full-width">
-                    <h4>🔬 Khoa học STEM (Sự nhũ hóa)</h4>
-                    <p>Lecithin trong lòng đỏ trứng đóng vai trò chất nhũ hóa, giữ cho các giọt dầu lơ lửng trong nước mà không bị tách lớp. Đây là bí quyết để có nước sốt đặc mịn.</p>
-                </div>
+                <div class="section-box"><h4>🛒 Nguyên liệu</h4><ul><li>2 lòng đỏ trứng gà.</li><li>200ml dầu ăn, đường, muối.</li></ul></div>
+                <div class="section-box"><h4>👨‍🍳 Cách làm</h4><ol><li>Đánh trứng bông nhẹ với đường.</li><li>Thêm dầu từng giọt và đánh.</li><li>Đánh đến khi sốt trong và đặc.</li></ol></div>
+                <div class="section-box full-width"><h4>🔬 Khoa học STEM</h4><p>Lecithin trong trứng làm chất trung gian gắn kết nước và dầu, tạo nên hỗn hợp nhũ hóa đồng nhất.</p></div>
             </div>
             <button class="back-btn" onclick="showPage('main-page')">Quay lại</button>
         </div>
     </div>
 
-    <div class="floating-group" style="position: fixed; bottom: 30px; right: 30px;">
-        <a href="https://www.facebook.com/le.tienn.389884" target="_blank" style="width: 60px; height: 60px; background: #1877F2; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: white; font-size: 30px; border: 3px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">f</a>
+    <div class="floating-fb">
+        <a href="https://www.facebook.com/le.tienn.389884" target="_blank" class="fb-btn">f</a>
     </div>
 
     <script>
         function showPage(id) {
-            // Dừng video cũ
             document.querySelectorAll('.page').forEach(p => { 
                 p.classList.remove('active'); 
                 const ifr = p.querySelector('iframe'); 
                 if(ifr) ifr.src = ""; 
             });
-            // Tải trang mới và nạp video
             const act = document.getElementById(id); 
             act.classList.add('active');
             const ifr = act.querySelector('iframe'); 
