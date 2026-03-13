@@ -45,8 +45,22 @@
         .fb-float { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #1877F2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 30px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; }
         
         .gm-container { position: fixed; bottom: 100px; right: 25px; display: flex; align-items: center; z-index: 9999; cursor: pointer; }
-        .gm-tooltip { background: #6f4e37; color: white; padding: 12px 18px; border-radius: 18px; margin-right: 15px; font-size: 0.9rem; font-weight: 600; width: 220px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.3); position: relative; line-height: 1.4; }
+        
+        /* PHẦN SỬA LẠI DÒNG CHỮ: Tự động điều chỉnh khung theo thiết bị */
+        .gm-tooltip { 
+            background: #6f4e37; color: white; padding: 12px 18px; border-radius: 18px; 
+            margin-right: 15px; font-size: 0.9rem; font-weight: 600; 
+            width: auto; max-width: 80vw; /* Tự động điều chỉnh chiều rộng */
+            text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.3); position: relative; 
+            line-height: 1.4; opacity: 0; transform: translateX(10px); 
+            transition: 0.3s ease; pointer-events: none;
+            white-space: normal; word-wrap: break-word; /* Đảm bảo chữ xuống dòng đúng trên điện thoại */
+        }
         .gm-tooltip::after { content: ''; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 10px solid #6f4e37; }
+        
+        /* Hiện dòng chữ khi rê chuột hoặc chạm vào gm-container */
+        .gm-container:hover .gm-tooltip, .gm-container:active .gm-tooltip { opacity: 1; transform: translateX(0); }
+
         .gm-icon-box { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
 
         /* MODAL */
@@ -275,21 +289,19 @@
     </div>
 
     <script>
-        // Điều hướng trang mượt mà và quản lý Video
         function nav(id) {
             document.querySelectorAll('.page').forEach(p => {
                 p.classList.remove('active');
                 const ifr = p.querySelector('iframe');
-                if(ifr) ifr.src = ""; // Xóa src để dừng video hoàn toàn
+                if(ifr) ifr.src = "";
             });
             const activePage = document.getElementById(id);
             activePage.classList.add('active');
             const ifr = activePage.querySelector('iframe');
-            if(ifr) ifr.src = ifr.getAttribute('data-src'); // Chỉ load video khi mở trang
+            if(ifr) ifr.src = ifr.getAttribute('data-src');
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Gửi Formspree chuyên nghiệp
         async function submitToFormspree() {
             const n = document.getElementById('usr_name').value;
             const m = document.getElementById('usr_msg').value;
@@ -309,7 +321,6 @@
             }
         }
 
-        // Hiệu ứng icon bay cho sinh động
         const icons = ['🍮', '🍞', '🧈', '🥣', '🥚', '🥛', '🍰'];
         setInterval(() => {
             const div = document.createElement('div');
